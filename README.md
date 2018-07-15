@@ -20,7 +20,7 @@
 
 ## 理解模逆运算
 
-- 如果` (a*b)%c==1` ，那么a和b互为对方模c的模逆元/数论倒数，也写作![mod_inv](1531107643807.png) 。
+- 如果` (a*b)%c==1` ，那么a和b互为对方模c的模逆元/数论倒数，也写作![mod_inv](RSA安全.assets/1531107643807.png) 。
 - 关于最大公约数有一个基本事实：`给予两整数a、c，必存在整数x、y使得ax + cy = gcd(a,c)`  ，基于这个事实，当a,c互素即`gcd(a,c)==1` 时，有`ax+cy=1` ，那么就有`(a*x)%c==1` ，所以x就是a 对c的模逆元。因此，a对c存在模逆元b的充要条件是`gcd(a,c)==1` 。显然对于每一组`a,c` ，存在一族满足条件的x，在求模逆元时我们取得是最小正整数解`x mod n` 。
 - 上述的基本事实很容易理解，因为a和c的最大公约数是gcd(a,b)，所以a和c都可表示为gcd(a,b)的整数倍，那么a和b的任意整系数的线性组合ax+by也必定能表示成gcd(a,c)的整数倍，他们当中最小的正整数就应该是gcd(a,c)。实际上最大公约数有一个定义就是：`a和b的最大公约数g是a和b的线性和中的最小正整数 `  。
 
@@ -91,7 +91,7 @@ def gcd2(a, b):
 
 [这篇文章](http://blog.miskcoo.com/2014/09/chinese-remainder-theorem#i-3) 解释得很到位，对照下图和以下递归版实现容易理解。
 
-![ext_euclid](1531578488892.png)
+![ext_euclid](RSA安全.assets/1531578488892.png)
 
 Python实现如下：
 
@@ -127,7 +127,7 @@ def egcd(a, b):
 
 [维基百科](https://zh.wikipedia.org/wiki/%E4%B8%AD%E5%9B%BD%E5%89%A9%E4%BD%99%E5%AE%9A%E7%90%86) 给出了简洁生动的说明:
 
-![CRT](1531585006464.png)
+![CRT](RSA安全.assets/1531585006464.png)
 
 参考以上说明进行的Python实现:
 
@@ -165,7 +165,7 @@ def GCRT(mi, ai):
 
 图片截自  [中国剩余定理（互质与不互质的情况）](https://blog.csdn.net/qq_29980371/article/details/71053219) 。
 
-![CRT2](1531591884497.png)
+![CRT2](RSA安全.assets/1531591884497.png)
 
 # 常见攻击方式实践
 
@@ -474,7 +474,7 @@ def rabin_decrypt(c, p, q, e=2):
 
 解密方法是参照维基百科的，截图如下：
 
-![Wiener's Attack](1531634016545.png)
+![Wiener's Attack](RSA安全.assets/1531634016545.png)
 
 ### 例子：Jarvis OJ hard RSA
 
@@ -685,7 +685,7 @@ if __name__ == '__main__':
     # QCTF{RSA_parity_oracle_is_fun}
 ```
 
-![Baby RSA](1531637468518.png)
+![Baby RSA](RSA安全.assets/1531637468518.png)
 
 ## 选择密文攻击
 
