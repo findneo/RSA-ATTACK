@@ -80,9 +80,9 @@ def gcd(a, b):
 
 # 迭代版
 def gcd2(a, b):
-    while not b:
+    while b:
         a, b = b, a % b
-        return a
+    return a
 ```
 
 ## 扩展欧几里得算法
