@@ -43,7 +43,7 @@ phi1=(p1-1)*(q1-1);phi2=(p2-1)*(q2-1)
 d1=gmpy2.invert(e1,phi1);d2=gmpy2.invert(e2,phi2)
 f1=pow(c1,d1,n1);f2=pow(c2,d2,n2)
 
-# 记 flag**14 为 f3,则有同余方程组 f3 % n1 == f1; f3 % n2 == f2。其中f1,f2,n1,n2已知，可求模lsm(n1,n2)意义下的解 f3。
+# 记 flag**14 为 f3,则有同余方程组 f3 % n1 == f1; f3 % n2 == f2。其中f1,f2,n1,n2已知，可求模lcm(n1,n2)意义下的解 f3。
 # 参考 https://findneo.github.io/180727rsa-attack/#%E4%B8%AD%E5%9B%BD%E5%89%A9%E4%BD%99%E5%AE%9A%E7%90%86。
 def GCRT(mi, ai):
     # mi,ai分别表示模数和取模后的值,都为列表结构
@@ -58,13 +58,13 @@ def GCRT(mi, ai):
         curm = curm * m // d
         cura %= curm
     return (cura % curm, curm) #(解,最小公倍数)
-f3,lsm = GCRT([n1,n2],[f1,f2])
-assert(f3%n1==f1);assert(f3%n2==f2);assert(lsm==p1*p2*q)
+f3,lcm = GCRT([n1,n2],[f1,f2])
+assert(f3%n1==f1);assert(f3%n2==f2);assert(lcm==p1*p2*q)
 
 
-# assert(flag**14 % lsm == f3)
-# 此时求出的 f3 满足上式。其中 lsm==p1*p2*q 有5个约数: 1, p1*q即n1 ,p2*q即n2, p1*p2记作n3, lsm。
-# 上式可看作 pow(flag**2,7,lsm)==f3，等价于 pow(flag**2,7,n1)==f3%n1,pow(flag**2,7,n2)==f3%n2,pow(flag**2,7,n3)==f3%n3
+# assert(flag**14 % lcm == f3)
+# 此时求出的 f3 满足上式。其中 lcm==p1*p2*q 有5个约数: 1, p1*q即n1 ,p2*q即n2, p1*p2记作n3, lcm。
+# 上式可看作 pow(flag**2,7,lcm)==f3，等价于 pow(flag**2,7,n1)==f3%n1,pow(flag**2,7,n2)==f3%n2,pow(flag**2,7,n3)==f3%n3
 # 由于 gcd(7,n1)==7,gcd(7,n2)==7。所以尝试选取 pow(flag**2,7,n3)==f3%n3 计算 flag**2 的值
 n3=p1*p2
 c3=f3%n3
