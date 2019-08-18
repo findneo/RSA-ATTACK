@@ -593,11 +593,11 @@ def partial(c, e, n):
     lo = decimal.Decimal(0)
     hi = decimal.Decimal(n)
     for i in range(k):
+        c = (c * pow(2, e, n)) % n
         if not oracle(c):
             hi = (lo + hi) / 2
         else:
             lo = (lo + hi) / 2
-        c = (c * pow(2, e, n)) % n
         # print i, int(hi - lo)
     return int(hi)
 ```
